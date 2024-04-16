@@ -12,6 +12,7 @@ class Sprite {
     this.velocity = velocity;
     this.height = 150;
     this.width = 50;
+    this.health = 100;
     //51:16
     this.attackBox = {
       position: {
@@ -119,14 +120,18 @@ function animate() {
     player.isAttacking
   ) {
     player.isAttacking = false;
+    enemy.health -= 20;
     console.log("attacked enemy.");
+    document.querySelector("#enemyHealth").style.width = enemy.health + "%";
   }
   if (
     rectangularCollision({ rectangle1: enemy, rectangle2: player }) &&
     enemy.isAttacking
   ) {
     enemy.isAttacking = false;
+    player.health -= 20;
     console.log("attacked player.");
+    document.querySelector("#playerHealth").style.width = player.health + "%";
   }
 }
 
