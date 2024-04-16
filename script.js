@@ -12,6 +12,7 @@ class Sprite {
     this.velocity = velocity;
     this.height = 150;
     this.width = 50;
+    //51:16
     this.attackBox = {
       position: {
         x: this.position.x,
@@ -28,7 +29,7 @@ class Sprite {
     c.fillStyle = this.color;
     c.fillRect(this.position.x, this.position.y, this.width, this.height);
 
-    // attack box
+    // attack box 52:41
     if (this.isAttacking) {
       c.fillStyle = "green";
       c.fillRect(
@@ -55,6 +56,7 @@ class Sprite {
 
   attack() {
     this.isAttacking = true;
+
     setTimeout(() => (this.isAttacking = false), 100);
   }
 }
@@ -109,6 +111,7 @@ function animate() {
   c.fillRect(0, 0, canvas.width, canvas.height);
   player.update("blue");
   enemy.update("red");
+  //console.log(player.position.y);
 
   // detect collisions
   if (
@@ -138,7 +141,7 @@ window.addEventListener("keydown", function (event) {
   if (event.key == "a") {
     player.velocity.x = -5;
   }
-  if (event.key == "w") {
+  if (event.key == "w" && player.position.y > 426) {
     player.velocity.y = -20;
   }
 
@@ -149,7 +152,7 @@ window.addEventListener("keydown", function (event) {
   if (event.key == "ArrowLeft") {
     enemy.velocity.x = -5;
   }
-  if (event.key == "ArrowUp") {
+  if (event.key == "ArrowUp" && enemy.position.y > 426) {
     enemy.velocity.y = -20;
   }
 
